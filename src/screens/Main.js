@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Platform, Image, Dimensions, ScrollView, RefreshControl , Animated} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Platform, Image, Dimensions, ScrollView, RefreshControl, Animated } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 import Draggable from 'react-native-draggable';
 import { AntDesign } from '@expo/vector-icons';
@@ -14,8 +14,16 @@ export function Main() {
     const [mark, setMark] = React.useState(null);
     const [getOpacity, setOpacity] = React.useState(1)
     const [getOpenOpacity, setOpenOpacity] = React.useState(false)
-
+    const [getGrayFilter, setGrayFilter] = React.useState("grayscale(0%)")
+    const [getGrayFilterNum, setGrayFilterNum] = React.useState(0)
     const [refreshing, setRefreshing] = React.useState(false);
+    const [getImageWidth, setImageWidth] = React.useState(100);
+    const [getImaheHeight, setImageHeight] = React.useState(100);
+    const [getImageX, setImageX] = React.useState(50);
+    const [getImageY, setImageY] = React.useState(10);
+    const [getBlur, setBlur] = React.useState(0)
+
+    const [getFilterName, setFilterName] = React.useState();
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -107,12 +115,15 @@ export function Main() {
                         <>
                             <Image
                                 source={{ uri: image }}
+                                blurRadius={getBlur}
                                 style={{
                                     width: 350,
                                     height: 500,
                                     alignSelf: "center",
                                     resizeMode: 'cover',
-                                    position: 'absolute'
+                                    position: 'absolute',
+                                    filter: getGrayFilter,
+
 
                                 }} />
 
@@ -124,8 +135,8 @@ export function Main() {
                             {Platform.OS !== "android" ?
                                 <Draggable
                                     renderSize={80}
-                                    x={50}
-                                    y={10}
+                                    x={getImageX}
+                                    y={getImageY}
                                     minX={50}
                                     maxX={Dimensions.get('screen').width - 130}
                                     minY={10}
@@ -137,35 +148,39 @@ export function Main() {
                                 >
                                     <Image
                                         source={{ uri: mark }}
+                                        blurRadius={getBlur}
                                         style={{
                                             position: 'absolute',
-                                            width: 100,
-                                            height: 100,
+                                            width: getImageWidth,
+                                            height: getImaheHeight,
                                             alignSelf: "center",
                                             resizeMode: 'contain',
                                             position: 'absolute',
-                                            opacity: getOpacity
+                                            opacity: getOpacity,
+                                            filter: getGrayFilter
                                         }} />
 
                                 </Draggable>
                                 :
                                 <Image
                                     source={{ uri: mark }}
-                                    x={50}
-                                    y={10}
+                                    x={getImageX}
+                                    y={getImageY}
+                                    blurRadius={getBlur}
                                     minX={50}
                                     maxX={Dimensions.get('screen').width - 130}
                                     minY={10}
                                     maxY={Dimensions.get('screen').width - 50}
                                     style={{
                                         position: 'absolute',
-                                        width: 100,
-                                        height: 100,
+                                        width: getImageWidth,
+                                        height: getImaheHeight,
                                         alignSelf: "center",
                                         resizeMode: 'contain',
                                         position: 'absolute',
                                         opacity: getOpacity,
-                                        
+                                        filter: getGrayFilter
+
                                     }} />
                             }
 
@@ -185,28 +200,89 @@ export function Main() {
             {getOpenOpacity ?
                 <View
                     style={styles.WaterMarkerSubTeknikContainer}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            if (getOpacity !== 1) {
-                                setOpacity((((getOpacity * 10) + (0.1 * 10)) / 10))
-                            }
-                            else {
-                                alert("Opacity daha fazla artamaz")
-                            }
-                        }}>
-                        <AntDesign name="pluscircle" size={24} color="#C8C8A9" />
-                    </TouchableOpacity>
-                    <Text style={styles.OpacityText}>{getOpacity}</Text>
-                    <TouchableOpacity onPress={() => {
-                        if (getOpacity !== 0) {
-                            setOpacity(((getOpacity * 10) - (0.1 * 10)) / 10)
-                        }
-                        else {
-                            alert("Opacity daha fazla azalamz")
-                        }
-                    }}>
-                        <AntDesign name="minuscircle" size={24} color="#C8C8A9" />
-                    </TouchableOpacity>
+                    {getFilterName === "Visible-Invisible" &&
+                        <>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    if (getOpacity !== 1) {
+                                        setOpacity((((getOpacity * 10) + (0.1 * 10)) / 10))
+                                    }
+                                    else {
+                                        alert("Opacity daha fazla artamaz")
+                                    }
+                                }}>
+                                <AntDesign name="pluscircle" size={24} color="#C8C8A9" />
+                            </TouchableOpacity>
+                            <Text style={styles.OpacityText}>{getOpacity}</Text>
+                            <TouchableOpacity onPress={() => {
+                                if (getOpacity !== 0) {
+                                    setOpacity(((getOpacity * 10) - (0.1 * 10)) / 10)
+                                }
+                                else {
+                                    alert("Opacity daha fazla azalamz")
+                                }
+                            }}>
+                                <AntDesign name="minuscircle" size={24} color="#C8C8A9" />
+                            </TouchableOpacity>
+                        </>
+
+                        || getFilterName === "Frekans" &&
+                        <>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    if (getGrayFilterNum !== 100) {
+                                        setGrayFilterNum(getGrayFilterNum + 10)
+                                        let grayScale = "grayscale(" + getGrayFilterNum + "%)"
+                                        setGrayFilter(grayScale)
+                                    }
+                                    else {
+                                        alert("Graysclale daha fazla artamaz")
+                                    }
+                                }}>
+                                <AntDesign name="pluscircle" size={24} color="#C8C8A9" />
+                            </TouchableOpacity>
+                            <Text style={styles.OpacityText}>{getGrayFilterNum} %</Text>
+                            <TouchableOpacity onPress={() => {
+                                if (getGrayFilterNum !== 0) {
+                                    setGrayFilterNum(getGrayFilterNum - 10)
+                                    let grayScale = "grayscale(" + getGrayFilterNum + "%)"
+                                    setGrayFilter(grayScale)
+                                }
+                                else {
+                                    alert("Graysclale daha fazla azalamz")
+                                }
+                            }}>
+                                <AntDesign name="minuscircle" size={24} color="#C8C8A9" />
+                            </TouchableOpacity>
+                        </>
+                        || getFilterName === "BitStream" &&
+
+                        <>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    if (getBlur !== 5) {
+                                        setBlur(getBlur + 1)
+                                    }
+                                    else {
+                                        alert("Blur daha fazla artamaz")
+                                    }
+                                }}>
+                                <AntDesign name="pluscircle" size={24} color="#C8C8A9" />
+                            </TouchableOpacity>
+                            <Text style={styles.OpacityText}>{getBlur}</Text>
+                            <TouchableOpacity onPress={() => {
+                                if (getBlur!== 0) {
+                                    setBlur(getBlur - 1)
+                                }
+                                else {
+                                    alert("Blur daha fazla azalamz")
+                                }
+                            }}>
+                                <AntDesign name="minuscircle" size={24} color="#C8C8A9" />
+                            </TouchableOpacity>
+                        </>
+                    }
+
                 </View>
                 :
                 null}
@@ -220,22 +296,36 @@ export function Main() {
                 <TouchableOpacity
                     style={styles.WaterMarkerTeknikItems}
                     onPress={() => {
+                        setFilterName("Visible-Invisible")
                         setOpenOpacity(!getOpenOpacity)
                     }}>
                     <Text style={styles.WaterMarkerTeknikItemsText}>Visible/Invisible Watermarking</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                    onPress={() => {
+                        setFilterName("Frekans")
+                        setOpenOpacity(!getOpenOpacity)
+                    }}
                     style={styles.WaterMarkerTeknikItems}>
                     <Text style={styles.WaterMarkerTeknikItemsText}>Frekans Domain Watermarking</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                    onPress={() => {
+                        setImageHeight(300);
+                        setImageWidth(500);
+                        setOpacity(0.1)
+                    }}
                     style={styles.WaterMarkerTeknikItems}>
                     <Text style={styles.WaterMarkerTeknikItemsText}>Spatial Domain Watermarking</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                    onPress={() => {
+                        setFilterName("BitStream")
+                        setOpenOpacity(!getOpenOpacity)
+                    }}
                     style={styles.WaterMarkerTeknikItems}>
                     <Text style={styles.WaterMarkerTeknikItemsText}>BitStream Domain Watermarking</Text>
                 </TouchableOpacity>
@@ -285,8 +375,8 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "bold",
         color: "#333",
-        textAlign:'center',
-        alignSelf:'center'
+        textAlign: 'center',
+        alignSelf: 'center'
     },
     WaterMarkerSubTeknikContainer: {
         width: '100%',
