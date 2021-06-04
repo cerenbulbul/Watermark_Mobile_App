@@ -71,9 +71,18 @@ Watermarks are identification marks produced during the papermaking process. The
 <a name="life"></a>
 ##  Digital Watermarking Process (Life Cycle) 
 
-- **Embed :**
-- **Attack :**
-- **Detection :**
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/120812733-ed5b2e80-c555-11eb-8718-f8d2300704e8.png"  />
+</p>
+
+
+- **Embed :** In this part, the digital signal is embedded with the digital watermark. In Embedding, an algorithm accepts the host and the data to be embedded and produces a watermark signal. 
+
+
+- **Attack :** İletilen medyanın değiştirildiği an, bir tehdit haline gelir ve filigran sistemine saldırı olarak adlandırılır. Filigranlı dijital sinyal iletilir veya saklanır, genellikle başka bir kişiye iletilir. Bu kişi değişiklik yaparsa buna saldırı denir.
+
+
+- **Detection :** The detection of the watermark from the noisy signal which might have altered media (JPEG compression, rotation, cropping, and adding noise) another called is Protection or Extraction. Extraction/Detection is an algorithm that is  applied to the attacked signal to attempt to extract the watermark from it. If the signal was unmodified during the transmission, then the watermark still is present and it may be extracted. 
 
 
 
