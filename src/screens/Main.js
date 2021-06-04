@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform, Image, Dimensions, 
 import * as ImagePicker from 'expo-image-picker';
 import Draggable from 'react-native-draggable';
 import { AntDesign } from '@expo/vector-icons';
+import getBase64Grayscale from "react-native-grayscale";
 
 const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
@@ -22,6 +23,7 @@ export function Main() {
     const [getImageX, setImageX] = React.useState(50);
     const [getImageY, setImageY] = React.useState(10);
     const [getBlur, setBlur] = React.useState(0)
+    const [checkSpatialDomain, setCheckSpatialDomatin] = React.useState(false)
 
     const [getFilterName, setFilterName] = React.useState();
 
@@ -70,6 +72,8 @@ export function Main() {
         }
     };
 
+
+
     return (
         <View style={styles.Container}>
 
@@ -111,10 +115,11 @@ export function Main() {
                 }}>
 
 
+
                     {image &&
-                        <>
+                        <View>
+
                             <Image
-                                source={{ uri: image }}
                                 blurRadius={getBlur}
                                 style={{
                                     width: 350,
@@ -122,12 +127,24 @@ export function Main() {
                                     alignSelf: "center",
                                     resizeMode: 'cover',
                                     position: 'absolute',
-                                    filter: getGrayFilter,
+                                }}
+                                source={{ uri: image }}
+                            />
+
+                            <View
+                                style={{
+                                    width: 350,
+                                    height: 500,
+                                    alignSelf: "center",
+                                    resizeMode: 'cover',
+                                    position: 'absolute',
+                                    backgroundColor: 'gray',
+                                    opacity: getGrayFilterNum
+                                }}>
+                            </View>
 
 
-                                }} />
-
-                        </>
+                        </View>
                     }
 
                     {mark &&
@@ -146,9 +163,44 @@ export function Main() {
                                     onPressIn={() => console.log('in press')}
                                     onPressOut={() => console.log('out press')}
                                 >
+                                    <View>
+                                        <Image
+                                            source={{ uri: mark }}
+                                            blurRadius={getBlur}
+                                            style={{
+                                                position: 'absolute',
+                                                width: getImageWidth,
+                                                height: getImaheHeight,
+                                                alignSelf: "center",
+                                                resizeMode: 'contain',
+                                                position: 'absolute',
+                                                opacity: getOpacity,
+                                            }} />
+                                        <View
+                                            style={{
+                                                width: 100,
+                                                height: 100,
+                                                alignSelf: "center",
+                                                resizeMode: 'contain',
+                                                position: 'absolute',
+                                                backgroundColor: 'gray',
+                                                opacity: getGrayFilterNum
+                                            }}>
+                                        </View>
+                                    </View>
+
+                                </Draggable>
+                                :
+                                <View>
                                     <Image
                                         source={{ uri: mark }}
+                                        x={getImageX}
+                                        y={getImageY}
                                         blurRadius={getBlur}
+                                        minX={50}
+                                        maxX={Dimensions.get('screen').width - 130}
+                                        minY={10}
+                                        maxY={Dimensions.get('screen').width - 50}
                                         style={{
                                             position: 'absolute',
                                             width: getImageWidth,
@@ -157,31 +209,21 @@ export function Main() {
                                             resizeMode: 'contain',
                                             position: 'absolute',
                                             opacity: getOpacity,
-                                            filter: getGrayFilter
+
                                         }} />
 
-                                </Draggable>
-                                :
-                                <Image
-                                    source={{ uri: mark }}
-                                    x={getImageX}
-                                    y={getImageY}
-                                    blurRadius={getBlur}
-                                    minX={50}
-                                    maxX={Dimensions.get('screen').width - 130}
-                                    minY={10}
-                                    maxY={Dimensions.get('screen').width - 50}
-                                    style={{
-                                        position: 'absolute',
-                                        width: getImageWidth,
-                                        height: getImaheHeight,
-                                        alignSelf: "center",
-                                        resizeMode: 'contain',
-                                        position: 'absolute',
-                                        opacity: getOpacity,
-                                        filter: getGrayFilter
-
-                                    }} />
+                                    <View
+                                        style={{
+                                            width: 100,
+                                            height: 100,
+                                            alignSelf: "center",
+                                            resizeMode: 'contain',
+                                            position: 'absolute',
+                                            backgroundColor: 'gray',
+                                            opacity: getGrayFilterNum
+                                        }}>
+                                    </View>
+                                </View>
                             }
 
 
@@ -230,10 +272,8 @@ export function Main() {
                         <>
                             <TouchableOpacity
                                 onPress={() => {
-                                    if (getGrayFilterNum !== 100) {
-                                        setGrayFilterNum(getGrayFilterNum + 10)
-                                        let grayScale = "grayscale(" + getGrayFilterNum + "%)"
-                                        setGrayFilter(grayScale)
+                                    if (getGrayFilterNum !== 1) {
+                                        setGrayFilterNum((((getGrayFilterNum * 10) + (0.1 * 10)) / 10))
                                     }
                                     else {
                                         alert("Graysclale daha fazla artamaz")
@@ -241,12 +281,10 @@ export function Main() {
                                 }}>
                                 <AntDesign name="pluscircle" size={24} color="#C8C8A9" />
                             </TouchableOpacity>
-                            <Text style={styles.OpacityText}>{getGrayFilterNum} %</Text>
+                            <Text style={styles.OpacityText}>{getGrayFilterNum}</Text>
                             <TouchableOpacity onPress={() => {
                                 if (getGrayFilterNum !== 0) {
-                                    setGrayFilterNum(getGrayFilterNum - 10)
-                                    let grayScale = "grayscale(" + getGrayFilterNum + "%)"
-                                    setGrayFilter(grayScale)
+                                    setGrayFilterNum(((getGrayFilterNum * 10) - (0.1 * 10)) / 10)
                                 }
                                 else {
                                     alert("Graysclale daha fazla azalamz")
@@ -271,7 +309,7 @@ export function Main() {
                             </TouchableOpacity>
                             <Text style={styles.OpacityText}>{getBlur}</Text>
                             <TouchableOpacity onPress={() => {
-                                if (getBlur!== 0) {
+                                if (getBlur !== 0) {
                                     setBlur(getBlur - 1)
                                 }
                                 else {
@@ -313,9 +351,19 @@ export function Main() {
 
                 <TouchableOpacity
                     onPress={() => {
-                        setImageHeight(300);
-                        setImageWidth(500);
-                        setOpacity(0.1)
+                        if (checkSpatialDomain === false) {
+                            setImageHeight(300);
+                            setImageWidth(500);
+                            setOpacity(0.1)
+                            setCheckSpatialDomatin(!checkSpatialDomain)
+                        }
+                        else {
+                            setImageHeight(100);
+                            setImageWidth(100);
+                            setOpacity(1)
+                            setCheckSpatialDomatin(!checkSpatialDomain)
+                        }
+
                     }}
                     style={styles.WaterMarkerTeknikItems}>
                     <Text style={styles.WaterMarkerTeknikItemsText}>Spatial Domain Watermarking</Text>
@@ -366,7 +414,8 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     WaterMarkerTeknikItems: {
-        width: 150,
+        width: 383,
+        height:60,
         borderWidth: 1,
         padding: 15,
         borderColor: "#f0ae7e",
@@ -381,7 +430,7 @@ const styles = StyleSheet.create({
     WaterMarkerSubTeknikContainer: {
         width: '100%',
         height: 50,
-        marginBottom: 65,
+        marginBottom: 90,
         borderTopWidth: 1,
         borderColor: "#f0ae7e",
         flexDirection: "row",
