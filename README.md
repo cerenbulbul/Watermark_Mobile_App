@@ -150,13 +150,26 @@ In the Robust watermark, the watermark resists different types of attack. Robust
 <a name="freq"></a>
 - **Frequency Domain**
 
+Adding or changing components of digital images can be transferred to other value domains. Embedding watermark schemes in frequency coefficients will produce higher robustness than embedding watermark schemes in the spatial domain. A watermarking scheme that uses frequency-based should embed a watermark in low-frequency order or medium frequencies. Embedding a watermark in a low frequency can produce a higher quality degradation of the watermarked image. Embedding a watermark in a high frequency makes it less robust and it is a higher probability of being lost when the watermarked images are compressed. Discrete Cosine Transform (DCT) and Waveland Transform can be given examples. In the picture below, a watermark was made using the Waveland Transform method. As can be seen from the picture, the image-decompositon was used while using the Waveland Transform method.
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/120824351-0ae1c580-c561-11eb-8ca2-e75705430315.png"  width="500" height="250"/>
+</p>
+
 
 <a name="spa"></a>
 - **Spatial Domain**
 
+Digital watermarking manipulate the pixel in randomly selected values for adding watermark information. For example Least significant bitstream.  Randomly selected image data are dithered by a small amount according to a predefined algorithm, whose complexity may vary in practical systems. The algorithm defines the intensity and the position of the watermark on the original image. In the picture below, watermark was made using the Spatial Domain method. The logo is embedded in the middle of the picture and inside the picture. 
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/120819560-5fcf0d00-c55c-11eb-9ab8-29c4e7f40a0b.png"  width="550" height="300"/>
+</p>
 
 <a name="bit"></a>
 - **BitStream Domain**
+
 
 
 <a name="Imp"></a>
@@ -200,4 +213,5 @@ https://user-images.githubusercontent.com/36292743/120773901-66dd2780-c52a-11eb-
 6. [Digital watermarking techniques for image security](https://www.researchgate.net/publication/335957317_Digital_watermarking_techniques_for_image_security_a_review)
 7. [Visible Watermarking Technique Based on Human Visual System for Single Sensor Digital Cameras](https://www.hindawi.com/journals/scn/2017/7903198/)
 8. [An Adaptive Watermarking Technique for the copyright of digital images and Digital Image Protection](https://www.researchgate.net/publication/224951680_An_Adaptive_Watermarking_Technique_for_the_copyright_of_digital_imagesand_Digital_Image_Protection)
+9. [A robust and secure watermarking scheme based on singular values replacement](https://www.researchgate.net/publication/257767987_A_robust_and_secure_watermarking_scheme_based_on_singular_values_replacement)
 
