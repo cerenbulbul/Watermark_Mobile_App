@@ -25,8 +25,9 @@ ___
    * [BitStream Domain Watermarking](#Tech4)
 6. [ Implementation ](#Imp)
 7. [ Demo ](#Demo)
-   * [Demo For Android](#android)
-   * [Demo For IOS](#ios)
+   * [Demo on Web](#web)
+   * [Demo on Android](#android)
+   * [Demo on IOS](#ios)
 8. [RESOURCES](#ref)
 
 
@@ -95,13 +96,24 @@ ___
 <a name="Demo"></a>
 ## Demo
 
+<a name="web"></a>
+### Demo on Web
+
+https://user-images.githubusercontent.com/36292743/120771945-7196bd00-c528-11eb-8ed7-b27264d9c78a.mp4
+
 
 <a name="android"></a>
-### Demo For Android
+### Demo on Android
+
+
+https://user-images.githubusercontent.com/36292743/120772426-faadf400-c528-11eb-809f-0dacf6e4ca2b.mp4
 
 
 <a name="ios"></a>
-### Demo For IOS
+### Demo on IOS
+
+
+https://user-images.githubusercontent.com/36292743/120772741-4bbde800-c529-11eb-9c9f-7be31f0927d8.mp4
 
 
 
