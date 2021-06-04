@@ -113,7 +113,9 @@ https://user-images.githubusercontent.com/36292743/120772426-faadf400-c528-11eb-
 ### Demo on IOS
 
 
-https://user-images.githubusercontent.com/36292743/120772741-4bbde800-c529-11eb-9c9f-7be31f0927d8.mp4
+https://user-images.githubusercontent.com/36292743/120773901-66dd2780-c52a-11eb-900a-5f9c141dd412.mp4
+
+
 
 
 
