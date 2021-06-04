@@ -11,7 +11,8 @@ ___
 1. [ General Definition Of Digital Watermarking ](#Def)
 2. [ History Of Watermarking ](#History)
 3. [ Watermark Types ](#type)
-4. [ Classification Watermarking Techniques](#Class) 
+4. [ Digital Watermarking Process (Life Cycle) ](#life)
+5. [ Classification Watermarking Techniques](#Class) 
    * [Based on Human Perceptron](#human) 
       * [Visible](#Visible)
       * [Invisible](#invisible)
@@ -21,12 +22,12 @@ ___
       * [Frequency Domain](#freq)
       * [Spatial Domain](#spa)
       * [BitStream Domain](#bit)
-5. [ Implementation ](#Imp)
-6. [ Demo ](#Demo)
+6. [ Implementation ](#Imp)
+7. [ Demo ](#Demo)
    * [Demo on Web](#web)
    * [Demo on Android](#android)
    * [Demo on IOS](#ios)
-7. [RESOURCES](#ref)
+8. [RESOURCES](#ref)
 
 
 ___
@@ -65,6 +66,16 @@ Watermarks are identification marks produced during the papermaking process. The
 
 
 * **Video:** Copying videos can cause many problems nowadays. Therefore, watermark techniques are used to prevent the videos from being copied.
+
+
+<a name="life"></a>
+##  Digital Watermarking Process (Life Cycle) 
+
+- **Embed :**
+- **Attack :**
+- **Detection :**
+
+
 
 <a name="Class"></a>
 ## Classification Watermarking Techniques
