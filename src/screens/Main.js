@@ -24,6 +24,7 @@ export function Main() {
     const [getImageY, setImageY] = React.useState(10);
     const [getBlur, setBlur] = React.useState(0)
     const [checkSpatialDomain, setCheckSpatialDomatin] = React.useState(false)
+    const [getTime,setTime] = React.useState(false);
 
     const [getFilterName, setFilterName] = React.useState();
 
