@@ -24,9 +24,15 @@ export function Main() {
     const [getImageY, setImageY] = React.useState(10);
     const [getBlur, setBlur] = React.useState(0)
     const [checkSpatialDomain, setCheckSpatialDomatin] = React.useState(false)
-    const [getTime,setTime] = React.useState(false);
+    const [getTime, setTime] = React.useState(false);
 
     const [getFilterName, setFilterName] = React.useState();
+
+    //DCT algorithm constant definition
+    const n = 8;
+    const m = 8;
+    const pi = 3.142857;
+
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -386,6 +392,53 @@ export function Main() {
     )
 }
 
+function FrequencyDomain(matrix) {
+
+    let i, j, k, l;
+    let ci, cj, dct1, sum;
+    const [DCT, setDCT];
+    var myMap = new Map();
+    var keyObj = {};
+    const [getCDTArray, setDCTArray] = React.useState();
+    let finalArray = arr.map(callback( currentValue[0, index[0, array]]), arg);
+    let count = 0;
+
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            if (i == 0)
+                ci = 1 / Math.sqrt(m);
+            else
+                ci = Math.sqrt(2) / Math.sqrt(m);
+
+            if (j == 0)
+                cj = 1 / Math.sqrt(n);
+            else
+                cj = Math.sqrt(2) / Math.sqrt(n);
+
+            sum = 0;
+            for (k = 0; k < m; k++) {
+                for (l = 0; l < n; l++) {
+                    dct1 = matrix[k][l] *
+                        Math.cos((2 * k + 1) * i * pi / (2 * m)) *
+                        Math.cos((2 * l + 1) * j * pi / (2 * n));
+                    sum = sum + dct1;
+                }
+            }
+            setDCT(ci * cj * sum)
+            myMap.set(count,ci * cj * sum)
+            count = count+1;
+        }
+    }
+
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++)
+            System.out.printf("%f\t", dct[i][j]);
+        System.out.println();
+    }
+
+
+}
+
 
 const styles = StyleSheet.create({
     Container: {
@@ -416,7 +469,7 @@ const styles = StyleSheet.create({
     },
     WaterMarkerTeknikItems: {
         width: 383,
-        height:60,
+        height: 60,
         borderWidth: 1,
         padding: 15,
         borderColor: "#f0ae7e",
