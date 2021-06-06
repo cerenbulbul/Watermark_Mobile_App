@@ -20,6 +20,7 @@ ___
       * [Fragile](#fragile)
    * [Based on Domain](#dom) 
       * [Frequency Domain](#freq)
+      * [Grayscale](#gray)
       * [Spatial Domain](#spa)
       * [BitStream Domain](#bit)
 6. [ Implementation ](#Imp)
@@ -158,6 +159,11 @@ Adding or changing components of digital images can be transferred to other valu
 </p>
 
 
+<a name="gray"></a>
+- **Grayscale**
+
+
+
 <a name="spa"></a>
 - **Spatial Domain**
 
@@ -214,4 +220,5 @@ https://user-images.githubusercontent.com/36292743/120773901-66dd2780-c52a-11eb-
 7. [Visible Watermarking Technique Based on Human Visual System for Single Sensor Digital Cameras](https://www.hindawi.com/journals/scn/2017/7903198/)
 8. [An Adaptive Watermarking Technique for the copyright of digital images and Digital Image Protection](https://www.researchgate.net/publication/224951680_An_Adaptive_Watermarking_Technique_for_the_copyright_of_digital_imagesand_Digital_Image_Protection)
 9. [A robust and secure watermarking scheme based on singular values replacement](https://www.researchgate.net/publication/257767987_A_robust_and_secure_watermarking_scheme_based_on_singular_values_replacement)
+10. [GRAYSCALE IMAGE WATERMARK DETECTION](https://www.researchgate.net/publication/324985989_GRAYSCALE_IMAGE_WATERMARK_DETECTION/link/5b52868a45851507a7b6eb9b/download)
 
