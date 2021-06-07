@@ -138,6 +138,8 @@ In the Fragile Watermarks, watermark fails to be detected from the watermarked i
 
 In the Robust watermark, the watermark resists different types of attack. Robust watermarks may be used in copy protection applications to carry copy and no access control information. In the example below, a watermark was made using the Robust feature.
 
+Nowadays,there is an ever growing interest in copyright protection of multimedia content, thus digital watermarking techniques are widely practiced.
+
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/36292743/120804873-cdc00800-c54d-11eb-9404-6560a4ab8111.jpg"  width="550" height="300"/>
@@ -162,6 +164,13 @@ Adding or changing components of digital images can be transferred to other valu
 <a name="gray"></a>
 - **Grayscale**
 
+
+DCT algorithm helped us while converting the grayscale image to black and white. DCT is often used in signal and image processing, especially for lossy data compression, most of the signal information tends to be concentrated in a few low-frequency components of the DCT.DCT is used in JPEG image compression, MJPEG, MPEG, DV, and Theora video compression. There, the two-dimensional DCT of NxN blocks are computed and the results are quantized and entropy coded.
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/23723097/121085541-aa65b900-c7ea-11eb-98fd-cf9110f1ce37.JPG"  width="500" height="250"/>
+</p>
 
 
 <a name="spa"></a>
