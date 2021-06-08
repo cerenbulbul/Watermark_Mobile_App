@@ -23,6 +23,7 @@ ___
       * [Grayscale](#gray)
       * [Spatial Domain](#spa)
       * [BitStream Domain](#bit)
+      * [Bluring](#blur)
 6. [ Implementation ](#Imp)
 7. [ Demo ](#Demo)
    * [Demo on Web](#web)
@@ -184,6 +185,10 @@ Digital watermarking manipulate the pixel in randomly selected values for adding
 
 <a name="bit"></a>
 - **BitStream Domain**
+
+
+<a name="blur"></a>
+- **Bluring**
 
 
 
