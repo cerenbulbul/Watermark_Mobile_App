@@ -190,7 +190,11 @@ Digital watermarking manipulate the pixel in randomly selected values for adding
 <a name="blur"></a>
 - **Bluring**
 
+When a picture has a logo on it, when we want to use the picture, we can make the logo invisible using watermark techniques. When an image has a logo on it, when we "blur" that logo, the visibility of the logo will be gone. Thus, we have separated the picture and the logo with the watermark technique. We can do the same with trimming. When we crop the part of the logo, the image and the logo will be separated.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/121138749-aebcc100-c840-11eb-8991-6b5b98facbc8.png"  width="550" height="350"/>
+</p>
 
 <a name="Imp"></a>
 ## Implementation
