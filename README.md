@@ -186,6 +186,8 @@ Digital watermarking manipulate the pixel in randomly selected values for adding
 <a name="bit"></a>
 - **BitStream Domain**
 
+Bit-stream watermarking is generally known within the art. F. Scale factors are bit-stream signal parameters used in the sub-band domain for optimizing the coding efficiency. However, the prior art does describe a system that works with additive watermarks only.
+
 
 <a name="blur"></a>
 - **Bluring**
