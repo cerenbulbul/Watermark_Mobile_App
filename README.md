@@ -205,37 +205,112 @@ When a picture has a logo on it, when we want to use the picture, we can make th
 * Visible Function: When we put the logo on a picture, we have made a watermark by reducing the visibility (transparency) of the logo.
 
 
-'''
-
-    <Image
-       source={{ uri: mark }}
-       blurRadius={getBlur}
-       style={{
-       position: 'absolute',
-       width: getImageWidth,
-       height: getImaheHeight,
-       alignSelf: "center",
-       resizeMode: 'contain',
-       position: 'absolute',
-       opacity: getOpacity,
-    }} />
+      <Image
+         source={{ uri: mark }}
+         blurRadius={getBlur}
+         style={{
+         position: 'absolute',
+         width: getImageWidth,
+         height: getImaheHeight,
+         alignSelf: "center",
+         resizeMode: 'contain',
+         position: 'absolute',
+         opacity: getOpacity,
+      }} />
   
-  '''
+ 
 
-The "opacity: getOpacity" line in the above code reduces the visibility of the logo. The user can make a watermark by providing the transparency of the logo as desired.
+The "opacity: getOpacity" line in the above code reduces the visibility of the logo. The user can make a watermark by providing the transparency of the logo as desired. The following example shows how it looks in our app. The first figure has a logo and a picture. In the second figure, the opacity of the logo has been reduced. In the third figure, the opacity of the logo, which is the logo text, has been reduced.
 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/36292743/121735069-4c90e400-cafe-11eb-9d52-0cb71b4cf7e4.png"  width="400" height="200"/>
+  <img src="https://user-images.githubusercontent.com/36292743/121737487-97f8c180-cb01-11eb-9efb-ba3c567cacf8.png"  width="500" height="200"/>
 </p>
 
 
-* Frekans Domain (Grayscale) Function:
+* Frekans Domain (Grayscale) Function: We tried to implement the "DCT" algorithm, one of the frequency domain algorithms. The code given below contains the "DCT" algorithm. While implementing the code, we applied the formula given below.
 
-* Spatial Domain Function: 
+dct[i][j] = ci * cj (sum(k=0 to m-1) sum(l=0 to n-1) matrix[k][l] * cos((2*k+1) *i*pi/2*m) * cos((2*l+1) *j*pi/2*n) 
+where ci= 1/sqrt(m) if i=0 else ci= sqrt(2)/sqrt(m) and 
+similarly, cj= 1/sqrt(n) if j=0 else cj= sqrt(2)/sqrt(n) 
+and we have to apply this formula to all the value, i.e., from i=0 to m-1 and j=0 to n-1
+Here, sum(k=0 to m-1) denotes summation of values from k=0 to k=m-1. 
 
-* BitStream Domain (Bluring) Function: 
 
+
+        for (i = 0; i < m; i++) {
+                for (j = 0; j < n; j++) {
+                    if (i == 0)
+                        ci = 1 / Math.sqrt(m);
+                    else
+                        ci = Math.sqrt(2) / Math.sqrt(m);
+                    if (j == 0)
+                        cj = 1 / Math.sqrt(n);
+                    else
+                        cj = Math.sqrt(2) / Math.sqrt(n);
+
+                    sum = 0;
+                    for (k = 0; k < m; k++) {
+                        for (l = 0; l < n; l++) {
+                            dct1 = matrix[k][l] *
+                                Math.cos((2 * k + 1) * i * pi / (2 * m)) *
+                                Math.cos((2 * l + 1) * j * pi / (2 * n));
+                            sum = sum + dct1;
+                        }
+                    }
+                    setDCT(ci * cj * sum)
+                    myMap.set(count,ci * cj * sum)
+                    count = count+1;
+                }
+            }
+
+
+The code given above does not run the Frequency Domain algorithm as we would like. That's why we used the "Grayscale" algorithm instead. We watermarked with the "Grayscale" algorithm. Using the code below, we ensure that the logo or image is "grayscale".
+
+    backgroundColor: 'gray'
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/121741215-e52b6200-cb06-11eb-86f8-8bf9baa4115c.png"  width="500" height="200"/>
+</p>
+
+
+As shown in the figure above, our application can turn the given logo and image into "grayscale". In this way, it can watermark. In the first figure, there is a logo and a picture. In the second figure, there is a logo and picture turned into grayscale. In the third figure, there is an example made with our application but with another picture and logo entered.
+
+
+* Spatial Domain Function: While implementing the Spatial Domain algorithm, the entered logo is enlarged and brought to the background and centered. We implemented the Spatial Domain algorithm as follows. In the code above, the logo is set to be directly behind the image using the "getImageWidth" and "getImaheHeight" values. 
+
+      <Image
+        source={{ uri: mark }}
+        style={{
+          position: 'absolute',
+          width: getImageWidth,
+          height: getImaheHeight,
+          alignSelf: "center",
+          resizeMode: 'contain',
+          position: 'absolute',
+          opacity: getOpacity,
+      }} />
+
+
+The picture below shows how the "Spatial Domain" algorithm works in our application. In the first figure, the entered logo and picture are shown. In the second figure, the size of the logo has been changed, made transparent and centered. In the third figure, the same procedure was performed with different samples. It is more clearly understood in the third figure.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/121742369-66372900-cb08-11eb-966c-0b70e86276ff.png"  width="500" height="200"/>
+</p>
+
+
+* BitStream Domain (Bluring) Function: Bit Stream algorithm has been tried to be implemented. However, since the desired result could not be given exactly, a watermark method was used that blurs the "logo". The code below shows how the blur function is implemented. We implemented bluring using "blurRadius" attribute. 
+
+      <Image
+        source={{ uri: mark }}
+        blurRadius={getBlur} />
+
+The figures below show how the "bluring watermark" function works in our application. The picture and logo given in the first figure are shown. In the second figure, the logo and picture are shown as blurred. In the third figure, the bluring function is applied in another example. The third example shows it more clearly.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/121743119-7b608780-cb09-11eb-9829-9b27ca8f3361.png"  width="500" height="200"/>
+</p>
 
 <a name="Demo"></a>
 ## Demo
