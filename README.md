@@ -202,6 +202,41 @@ When a picture has a logo on it, when we want to use the picture, we can make th
 ## Implementation
 
 
+* Visible Function: When we put the logo on a picture, we have made a watermark by reducing the visibility (transparency) of the logo.
+
+
+'''
+
+    <Image
+       source={{ uri: mark }}
+       blurRadius={getBlur}
+       style={{
+       position: 'absolute',
+       width: getImageWidth,
+       height: getImaheHeight,
+       alignSelf: "center",
+       resizeMode: 'contain',
+       position: 'absolute',
+       opacity: getOpacity,
+    }} />
+  
+  '''
+
+The "opacity: getOpacity" line in the above code reduces the visibility of the logo. The user can make a watermark by providing the transparency of the logo as desired.
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/36292743/121735069-4c90e400-cafe-11eb-9d52-0cb71b4cf7e4.png"  width="400" height="200"/>
+</p>
+
+
+* Frekans Domain (Grayscale) Function:
+
+* Spatial Domain Function: 
+
+* BitStream Domain (Bluring) Function: 
+
+
 <a name="Demo"></a>
 ## Demo
 
