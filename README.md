@@ -315,6 +315,8 @@ The figures below show how the "bluring watermark" function works in our applica
 <a name="Demo"></a>
 ## Demo
 
+Demo: https://youtu.be/tIw9950hrc4
+
 <a name="web"></a>
 ### Demo on Web
 
